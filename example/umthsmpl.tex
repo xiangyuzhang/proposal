@@ -86,8 +86,8 @@
 %%                     the final version
 %% umassthesis changes the default font size to 12pt, but you may specify 10pt or
 %%   11pt in the options.
-\documentclass{umassthesis}          % for Ph.D. dissertation or proposal
-% \documentclass[thesis]{umassthesis}  % for Master's thesis
+%%\documentclass{umassthesis}          % for Ph.D. dissertation or proposal
+\documentclass[proposal]{umassthesis}  % for Master's thesis
 
 %%
 %% If you have enough figures or tables that you run out of space for their
@@ -109,18 +109,16 @@
 
 %%
 %% You must fill in all of these appropriately
-\title{On the predilection of sheep for grass\protect\\A really long
-  title\protect\\with multiple lines}
-\author{I. M. Woolly}
-\date{February 1995} % The date you'll actually graduate -- must be
+\title{Circuit Camouflage Algorithm\protect\\And\protect\\Oracle Guided Incremental Solver}
+\author{Xiangyu Zhang}
+\date{February 2017} % The date you'll actually graduate -- must be
                      % February, May, or September
-\copyrightyear{1995}
-\bachelors{B.Sc.}{University of Woolloomooloo}
-\masters{M.Sc.}{University of Back of Bourke}
-\secondmasters{M.Ed.}{Antioch College}
-\priordoctorate{M.D.}{University of Never-never-land}
-% \committeechair{B. B. Bahh}
-\cochairs{B. B. Bahh}{I. M. A. Wolf}
+\copyrightyear{2016}
+\bachelors{B.Sc.}{Florida Institute of Technology}
+\masters{M.Sc.}{University of Massachusetts Amherst }
+
+ \committeechair{Daniel Holcomb}
+%\cochairs{B. B. Bahh}{I. M. A. Wolf}
 \firstreader{Little Bo Peep}
 \secondreader{R. U. Sheepish}
 \thirdreader{Bill Shepherd}
@@ -129,7 +127,7 @@
 %\sixthreader{}            % Optional
 \departmentchair{Pete Shearer} % Uses "Department Chair" as the title. To
 % use an alternate title, such as "Chair", use \departmentchair[Chair]{Pete Shearer}
-\departmentname{Sheep Studies}
+\departmentname{Electrical and Computer Engineering}
 
 %% If your degree is something other than a Ph.D. (for a dissertation), or
 %% an M.S. (for a thesis), you will need to uncomment the appropriate
@@ -146,13 +144,13 @@
 %% \degree{Master of Landscape Architecture}{M.L.A.}
 %% \degree{Master of Music}{M.M.}
 %% \degree{Master of Public Administration}{M.P.A.}
-\degree{Master of Public Health}{M.P.H.}
+%%\degree{Master of Public Health}{M.P.H.}
 %% \degree{Master of Regional Planning}{M.R.P.}
 %% \degree{Master of Science}{M.S.}
 %% \degree{Master of Science in Accounting}{M.S. Acctg.}
 %% \degree{Master of Science in Chemical Engineering}{M.S. Ch.E.}
 %% \degree{Master of Science in Civil Engineering}{M.S.C.E.}
-%% \degree{Master of Science in Electrical and Computer Engineering}{M.S.E.C.E.}
+ \degree{Master of Science in Electrical and Computer Engineering}{M.S.E.C.E.}
 %% \degree{Master of Science in Engineering Management}{M.S. Eng. Mgt.}
 %% \degree{Master of Science in Environmental Engineering}{M.S. Env. E.}
 %% \degree{Master of Science in Industrial Engineering and Operations Research}{M.S.I.E.O.R.}
@@ -168,14 +166,14 @@
 %% if you were preparing an M.S. thesis instead of a PhD dissertation.
 \frontmatter
 \maketitle
-\copyrightpage     %% not required for an M.S. thesis
+%%\copyrightpage     %% not required for an M.S. thesis
 \signaturepage
 
 %%
 %% Dedication is optional -- but this is how you create it
 \begin{dedication}              % Dedication page
   \begin{center}
-    \emph{To those little lost sheep.}
+    \emph{In the name of Jesus Christ.}
   \end{center}
 \end{dedication}
 
@@ -217,15 +215,16 @@
 %%
 %% Acknowledgements are optional...yeah, right.
 \chapter{Acknowledgments}             % Acknowledgements page
-  Thanks to all those fine shepherds. Not to mention all the great
-  border collies and suchlike fine animals.
+I would like to thank my advisor, Dr. Daniel Holcomb, for his thoughtful, patient guidance and support. Thanks are also due to Duo Liu and Cunxi Yu. Together their friendship and selfless contribution to my professional development have been invaluable and will forever be appreciated. I would also like to extend my gratitude to the members of my committee, Dr. Sandip Kundu and Dr. Maciej J. Ciesielski, for their helpful comments and suggestions on all stages of this project.\\
+
+A special thank you to all those whose support and friendship helped me to stay focused on this project and who have provided me with the encouragement to continue when the going got tough.
 
 %%
 %% Abstract is MANDATORY. -- Except for MS theses
 \begin{abstract}                % Abstract
-  Sheep like grass.  Why?  Let me tell you.  Sheep are ruminants, like
-  cattle, deer, and horses.  They have stomachs that are specialized...
-\end{abstract}
+This study was performed with two main goals in mind. The first goal was to implement the four current main stream gate-level circuit camouflage algorithms as well as their performance. The second goal was to implement the Oracle-guided incremental de-camouflage algorithm. 
+
+The four circuit camouflage algorithms are implemented by Python, and the Oracle-guided incremental de-camouflage algorithm is implemented by C++. During this study, I tested the Oracle-guided de-camouflage tool (Solver, in short) performance by using it to de-obfuscate ISCAS-85 combinational benchmarks when camouflaged using the four camouflage algorithms. The results show that  Solver is able to efficiently de-obfuscate the ISCAS-85 benchmarks regardless of camouflaging style, and are able to do so 10.5x faster than the best existing approaches. And, based on Solver, this study also measured the performance for each camouflage algorithms. \end{abstract}
 
 %%
 %% Preface goes here...would be just like Acknowledgements -- optional
@@ -251,182 +250,89 @@
 %%
 %% If you want an introduction, which is not a numbered chapter, insert
 %% the following two lines.  This is OPTIONAL:
-\unnumberedchapter{Introduction}
-Why on earth do I want to study sheep anyway?
+%\unnumberedchapter{Introduction}
+%Why on earth do I want to study sheep anyway?
 
 %%
 %% Some sample text
-\chapter{An Introduction to Sheep}
-Is there life after sheep?~\cite{xyz}  Yes, I say there is.%\marginpar{Really?}
+\chapter{Incremental SAT-based Reverse Engineering of Camouflaged Logic Circuits}
+%%Is there life after sheep?~\cite{xyz}  Yes, I say there is.%\marginpar{Really?}
+        As countermeasures against reverse engineering of combinational logic, layout-level gate or routing camouflaging techniques have increasingly attracted interests. The security of camouflaging relies on the difficulty of learning the overall combinational logic function without knowing the functions implemented by the individual camouflaged components of the circuit.
 
-\section{Pulling the wool over your eyes}
+        In this study, I use incremental SAT solver to reconstruct the logical function of a circuit with camouflaged components. The algorithm used the standard attacker model in which an adversary knows only the non-camouflaged component functions, and has the ability to query the circuit to learn the correct output vector for any input vector. To test the performance, I use three different proposed styles of camouflaging \cite{1}, \cite{2}, \cite{3}. This study will give results to quantify the effectiveness of camouflaging techniques on a variety of ISCAS-85 benchmark circuits.
+\section{Introduction}
+    IC designers have clear incentives against publicizing all implementation details of a design, as this may compromise their strategic advantage or leak sensitive information. However, once a circuit is fabricated and released to market, reverse engineering techniques can attempt to extract implementation details from the physical object without consent or knowledge of the designer. Circuit camouflaging is an attempt to obscure the true functionality of a circuit, and to limit the information that can be leaked through reverse engineering.
+    
+    Gate-level camouflaging is a particular camouflaging technique in which the functions of certain combinational logic gates cannot be directly ascertained from imaging-based reverse engineering. In this case, the logic may be inferred using a combination of information obtained from reverse engineering and information obtained through observation of input-output vectors captured through scan chains or other mechanisms. In this paper we present such an algorithm for extracting the functionality of reverse engineered netlists.
 
-Sheep are fabulous creatures.  The noises they make are truly stupendous
-\cite{Bah}.  We also want to refer to figure \ref{fig:circle} here.
-Here's some verbatim text to screw us up:
+\section{Related Work}
+%What about wolves?\footnote{To be fair, some wolves are probably nice\ldots}
+Invasive techniques can be used to reverse engineer gate- level circuit functions. Invasive reverse engineering works by decapsulating the chip and imaging and removing each layer in succession to reveal the layers below for imaging. In recent years, reverse engineering of integrated circuit (IC) chips has become increasingly successful. Among other applications, invasive reverse engineering is used for competitive analysis in the IC industry, and has famously been used by Nohl et al. to identify cryptographic weaknesses in the Mifare Classic RFID tag. An overview of the state of the art in invasive reverse engineering is given by Torrance and James.
 
-{\small
-\begin{verbatim}
-xxx := y;
-xy := x;
-\end{verbatim}
-}
+Significant research effort is spent on extracting high-level meaning from the sea of gates obtained by invasive reverse engineering of fabricated circuits. Work by Li et al. resolves subcircuit components by matching against a set of known components, and Subramanyan et al. improve on this to operate on unstructured netlists, where subcircuits are not identified in advance. Further work by Li et al. extracts word-level structures from unstructured netlists where all gates are known. Work by Gasc?on et al. checks equivalence between a reference circuit and a circuit-under-investigation when the signal correspondence between the two is unknown. A primary difference between our work and these previous reverse engineering works is that our attacker model assumes there is no complete gate-level model of the circuit-under-investigation.
 
-\begin{figure}
-  \begin{center}
-    \begin{picture}(300,200)
-      \put(150,100){\circle{150}}
-      \put(1,1){\framebox(298,198){}}
-    \end{picture}
-    \caption{A circle in a square.}\label{fig:circle}
-  \end{center}
-\end{figure}
+A effective countermeasure against the trend of reverse engineering is the use of camouflaged gates. Camouflaged gates are ones for which the logic function cannot be determined by traditional reverse engineering techniques. Circuits can be camouflaged to prevent reverse engineering using specialized gate libraries, other layout techniques, or by changing the doping of cells without altering their structure at all.
 
-\subsection{All about sheep noises}
-Lots of text here just to fill up some space so we can be sure that we
-really are double-spacing and doing all the other things that might be
-necessary in formatting a dissertation to U.Mass. guidelines.  We're
-also going to have another figure here, figure \ref{fig:disc}, just
-for fun, and to make sure that the list of figures is formatted
-correctly.  Now it's time for table \ref{table:somenumbers}.  We
-really are going to need a third figure, figure \ref{fig:discs}, two
-more tables, table \ref{table:morenumbers} and table
-\ref{table:evenmorenumbers} and a fourth figure, figure
-\ref{fig:circleanddisc}, just to really make sure.
+Rajendran et al. present an attacker model for reverse engineering circuits with obfuscated gates. The logic function implemented by a camouflaged circuit should remain hard to discover when the attacker has knowledge of all non- camouflaged gates, and has the ability to apply inputs to the circuit and observe outputs. To minimize cost, it is desirable to protect a circuit by camouflaging only a small subset of the gates [15], [2]. Recent SAT-based approaches have shown that gate camouflaging can be reverse engineered [16], and a similar approach is used to logic encryption [17]. Jha et al. [18] present an approach of synthesizing bit-vector programs and deobfuscation using a combination of oracle-guided learning and satisfiability modulo theories (SMT) solving.
 
-\begin{figure}
-  \begin{center}
-    \begin{picture}(300,200)
-      \put(150,100){\circle*{150}}
-      \put(1,1){\framebox(298,198){}}
-    \end{picture}
-    \caption{A disc in a square.}\label{fig:disc}
-  \end{center}
-\end{figure}
+\section{Circuit camouflage and attacker model}
+The attacker model we use in this work is consistent with prior works in this area, including that of Rajendran et al. [2]. The attacker is assumed to have the following capabilities: (1) knowledge of the logic functions and routing of all non- obfuscated components in the circuit, (2) knowledge of which components are obfuscated and the possible functions they can each implement; and (3) the ability to apply input vectors to the camouflaged circuit and observe its corresponding outputs. We denote the third capability as oracle access, and this can be achieved using scan based test techniques [19] and micro probing [20]. As demonstrated by El Massad et al. [16], uncertainty about the logical functions of camouflaged components can be translated to uncertainty about the value of certain Boolean variables. In this work, we model all the configurations of the camouflaged circuit using multiplexers with uncertain control bits. We denote these control bits as programming bits, and in Section IV will show we can solve for the value of these variables using SAT. The resolved value of programming bits indicate the true logic function of the camoufalaged circuit. In this section, we show how this modeling mechanism can be applied to three different component camouflaging techniques: \textbf{Camouflaged Standard Cells, Obfusgates, and Transformable Interconnects}.
 
-\begin{table}[htbp]
-  \begin{center}
-    \caption{Some numbers.}
-    \label{table:somenumbers}
-    \begin{tabular}{|r|lll|}
-      \hline
-      & Minimum & Average & Maximum \\
-      Type of Animal & Observed & Observed & Observed \\ \hline
-      Cats & 12 & 20 & 24 \\
-      Dogs & 20 & 20 & 20 \\ \hline
-    \end{tabular}
-  \end{center}
-\end{table}
+\subsection{Camouflaged Standard Cells using Dummy Contacts}
+The first technique we consider is the use of camouflaged standard cells. The idea of standard cell camouflaging is to implement multiple logic functions using a generic cell layout, such that the reverse engineer cannot infer the logical function of the gate from its structure. One way of camouflaging standard cells is to use dummy contacts [21]. Dummy contacts are structures that look like connections between metal layers, or connections between metal layers and polysilicon, but in reality they make no such connection. Depending on which contacts in a cell are true contacts or dummies, a same-looking cell can implement different logic functions. Therefore, under the assumption that the reverse engineer cannot distinguish true contacts from dummy contacts, the attacker will not know which logic function is implemented by the cell.
 
-\begin{figure}
-  \begin{center}
-    \begin{picture}(400,200)
-      \put(100,100){\circle*{150}}
-      \put(300,100){\circle*{150}}
-      \put(1,1){\framebox(398,198){}}
-    \end{picture}
-    \caption{Two discs in a rectangle.}\label{fig:discs}
-  \end{center}
-\end{figure}
+A specific variant of a camouflaged standard cell is a generic cell layout that can realize the functionality of 2-input XOR, NAND, or NOR gates depending on which contacts are true [2]. To model the camouflaged cell, we introduce a multiplexer- based model (Figure 1). The functionality can be derived by resolving the values of program bits p i , p i+1 (Figure 1 a). Note that in this model p i , p i+1 are forbidden to be ?11? since there are only three possible functions. Additionally, we extend our model (Figure 1 b) to gain the capability of modeling other types of camouflaged standard cells. The function of Y can be represented as Y = ?A?Bp 1 +?ABp 2 +A?Bp 3 +ABp 4 . Hence, this model is able to represent any of the sixteen possible two-input functions.
 
-\begin{table}[htbp]
-  \begin{center}
-    \caption{More numbers.}
-    \label{table:morenumbers}
-    \begin{tabular}{|r|lll|}
-      \hline
-      Type of Animal & Arms & Legs & Ears \\ \hline
-      Person & 2 & 2 & 2 \\
-      Dog & 0 & 4 & 2 \\ \hline
-    \end{tabular}
-  \end{center}
-\end{table}
+\subsection{Obfusgates: Dopant Programmable Logic Cells}
+Similar to the above-described camouflaged standard cells, Malik et al. [3] propose implementing circuits using a library of indistinguishable logic gates that they denote Obfusgates. An Obfusgate is created by combining a logic gate standard cell with a number of Obfuscells applied on its input and output ports. Depending on the dopant polarity within the active area of the Obfuscells, each Obfuscell can have four different logic functions: inverter, buffer, constant 1, or constant 0. Because a reverse engineer typically does not consider the dopant polarity when reverse engineering a circuit, he will have difficulty learning the logical function of the Obfusgate.
 
-\begin{table}[htbp]
-  \begin{center}
-    \caption[Even more numbers; together with a caption long enough to ensure that multi-line caption formatting works correctly.]{Even more numbers; together with a caption long enough to ensure that multi-line caption formatting works correctly.  If you want a shorter caption to appear in the Table of Figures you're going to have to put the shorter caption in the \texttt{[]} as shown in this example.}
-    \label{table:evenmorenumbers}
+Figure 2 shows an Obfusgate comprising a 4-input NAND gate and five Obfuscells. We use a 4-to-1 multiplexer to model the Obfuscells (Figure 2). The function of the camouflaged circuit can be resolved by finding appropriate values for the programming bits. Additionally, Obfuscells can be applied to other logic gates (e.g. 2-AND Obfusgates in [3]). For each NAND4-based Obfusgate, the five Obfuscells ideally produce 4 5 configurations, but in reality the NAND4-Obfusgate has 162 unique logic functions because many configurations realize the same logic function. In our experiments, we evaluate 4-input Obfusgates.
 
-    \begin{tabular}{|r|lll|}
-      \hline
-      x & 1 & 1 & 1 \\ \hline
-      y & 2 & 2 & 2 \\
-      z & 3 & 3 & 3 \\ \hline
-    \end{tabular}
-  \end{center}
-\end{table}
+\subsection{Transformable Interconnects}
+A third obfuscation technique that we consider is the so- called transformable interconnects techniques proposed by Chen et al. [4]. This technique uses two types of contacts in interconnects: magnesium (Mg) contacts which are conductors, and magnesium oxide (MgO) contacts which are not conductors.
 
-\begin{figure}
-  \begin{center}
-    \begin{picture}(400,200)
-      \put(100,100){\circle{150}}
-      \put(300,100){\circle*{150}}
-      \put(1,1){\framebox(398,198){}}
-    \end{picture}
-    \caption{A circle and a disc in a square.  We want this caption to
-      be very long to ensure that the formatting of very long captions
-      is handled correctly.  The case of short captions has already
-      been dealt with.}\label{fig:circleanddisc}
-  \end{center}
-\end{figure}
+The idea of this approach is that, when an attacker tries to reverse engineer the chip by delayering it, the Mg contacts will oxidize into MgO, and thus all Mg and MgO contacts will appear indistinguishable to the attacker. A reverse engineer inspecting the chip will be able to infer that some of the contacts must have initially been Mg and others must have been MgO, otherwise there would be a single net with multiple driving gates; however, the attacker would not be able to know which were originally Mg, and therefore he must figure this out using input-output examples.
+
+An example of camouflaging using transformable intercon- nect is shown in Figure 3. The reverse engineer?s view of the circuit is as shown in Fig. 3(a), and from this he will infer that d1, d2, and d3 cannot all be true wires. The configurations in Fig. 3(b), 3(c) and 3(d) represent his set of hypotheses for the true connectivity of the circuit. Each one of these would represent the circuit functionality under a single guess about which wire was a non-conducting dummy. The reverse engineer therefore models the transformable interconnect component as shown in Fig. 3(e), where the value of p 2 and p 1 select the true connectivity of the circuit. Now, just as in the previous components, the reverse engineer can use input-output examples from the circuit to infer the values of p 2 and p 1 and hence resolve the original circuit function.
+
+\section{problem formulation}
+Using the multiplexer based modeling constructs from the previous section (see Figs. 1 2 and 3), we now address the problem of a deobfuscation algorithm. We refer to the Boolean variables in our model that select the logical function of each obfuscated component as programming bits, and collectively as a programming vector. We denote them as a programming vector of the circuit because the configure, or program, its functionality. The attacker?s job of learning the circuit function therefore becomes the problem of learning a suitable value for its programming vector. He uses known input-output pairing of the circuit to inform his guess about which programming vector values are feasible. A feasible programming vector is one that induces a circuit function that does not contradict any known input-output pairings.
 
 
+\subsection{Defining Notation}
+\begin{itemize}
+\item Vector I = {i 0 , . . . , i m!1 } represents an m-bit primary input vector to the circuit (I 2 2 m ).
+\item Vector P = {p 0 , p 1 , . . .} represents a programming vector that specifies the logic function implemented by each camouflaged component in the circuit. The length of the programming vector depends on the number of camouflaged circuit elements and the number of possible realizations for each element. The value of P together with the non-camouflaged circuit components together fully specify the logical function of the overall circuit. We denote a programming vector as feasible if the logic function it induces does not contradict a set of known input-output examples. Learning new input-output examples incrementally constrains feasible values of the programming vector P.
+\item Vector O = {o0,...,on-1} represents a n-bit primary output vector().
+\item The combinational circuit model, including all multiplex- ers and programming bits, is converted into a CNF formula ckt using Tseitin encoding. We use ckt(I, P, O) to denote the CNF formula of the circuit when I, P, and O are the input variables, programming bits, and output variables respectively. Wherever ckt(I, P, O) appears in Alg. 1 (at lines 1, 8, and 9), it always refers to a fresh copy of the circuit CNF with new variables for all internal circuit nodes. If two copies of the circuit CNF share a common input vector or programming vector, the respective inputs or programming vectors are equated to each other outside of the CNF of the combinational circuit.
+\item We use predicate M(I, P, P ) in Alg. 1 (line 1) to represent the miter of two copies of the circuit (see Fig. 4). This formula is satisfiable if and only if there exists an input I, and programming vectors P and P 0 that cause the circuit to produce different output values when input I is applied to both.
+\end{itemize}
 
-\subsubsection{Baahs}
-\subsection{Even more about sheep noises}
-\subsection{And yet more about sheep noises}
+Because there are programming vectors that describe all possible functions of all camouflaged components, there necessarily exists some value of P that will cause the circuit to be functionally equivalent to the oracle. Yet, because the oracle is only known through input-output pairings, one can only demonstrate that a learned model is functionally equivalent to the oracle by showing that (1) the model under some P is feasible with respect to all possible input-output pairings, or (2) by showing that some P is feasible and that all P 0 that induce different logic functions are not feasible. Our approach uses the latter approach. In this process, the camouflaged circuit is used only as an oracle. Chosen inputs are applied to it, and corresponding outputs are observed.
 
-\section{What about wolves?}
-What about wolves?\footnote{To be fair, some wolves are probably nice\ldots}
+\subsection{SAT Solving of Camouflaged circuit}
+The translation from combinational circuits to CNF clauses by way of Tseitin encoding is widely used in SAT-based automated test pattern generation (ATPG). What makes the deofuscation problem different from ATPG is that obfuscated components are represented in the CNF formula using the constructs of Figs. 1, 2, and 3. All combinational nodes in the circuit including inputs, outputs, and the programming vector, correspond to specific variables in the CNF formula. Each gate in the circuit corresponds to CNF clauses that constrain the values of the variables in any satisfying assignment. When a known input-output pair is applied to the circuit, unit clauses are added to force the appropriate variables to take the desired values. To avoid confusion, we denote an input-output pairing that is known to be correct as I and O with various subscripts.
 
-\section{What about shepherds?}
-What about shepherds?  I don't really know, but I want some text here
-to fill things in so that I can verify that everything is OK.%
-\footnote{Some shepherds are good, some are bad. The reader is referred
-  to Mary and The Boy Who Cried Wolf for further insight into this
-  much-debated issue. (This needs to be a very long footnote so we can
-  test the spacing between lines on a footnote.)}
-\subsection{A subsection}
-This is a subsection of the subsection about shepherds.
-\subsection{Another subsection}
-This is another subsection of that section.
-\subsubsection{A subsubsection}
-This is a subsubsection of that subsection that will in turn havae a
-paragraph with a pair of subparagraphs.  I am aware that I shouldn't
-have only one subsubsection in the subsection...
-\paragraph{A Paragraph} 
-This is the text associated with this paragraph.  I really want enough
-text to make it look like a paragraph.  Baah, baah, baah.  Baah, baah,
-baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah,
-baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah. 
-\subparagraph{A Subparagraph} 
-This is the text associated with this subparagraph.  Baah, baah, baah.
-Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah,
-baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah. 
-\subparagraph{Another Subparagraph}
-Better not have subparagraphs without text in them.  Baah, baah, baah.
-Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah,
-baah.  Baah, baah, baah.  Baah, baah, baah. 
-\paragraph{Another Paragraph}
-Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah,
-baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah,
-baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.
-Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah,
-baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah,
-baah, baah.  Baah, baah, baah.  Baah, baah, baah.
+\subsection{Incremental-SAT Algorithm}
+Our oracle-guided incremental-SAT based algorithm is given in Alg. 1. The algorithm uses a sub-formula M(I, P, P 0 ) to represent the miter of two copies of the circuit with different programming vectors. The algorithm maintains constraints feas(P) and feas(P 0 ) that evaluate to true for only the subset of programming vectors that are feasible with respect to all previously observed input-output pairs. These constraints are identical except that one is applied to P and the other P 0 .
 
-Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah,
-baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah,
-baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.
-Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah,
-baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah,
-baah, baah.  Baah, baah, baah.  Baah, baah, baah.
-\subsubsection{Another Subsubsection}
-With some text.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah,
-baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah,
-baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah. 
+The feasibility constraints are increasingly strengthened as the algorithm iterates through the loop. At the j th iteration of the while loop in Alg. 1, a satisfying assignment at line 5 produces an input vector I that can distinguish two feasible b programming vectors P and P 0 . This vector I is assigned to I j and applied to the oracle to obtain the corresponding output O b j . The pair (I b , O ) is then a new programming vector feasibility b
 
-\chapter{Sheep and Grass}
+j j constraint. Because vector I is known to distinguish the values of P and P 0 that were used to satisfy the SAT formula at line 5, at most one of these programming vectors will remain feasible after the feasibility constraints are strengthened (at lines 8 and 9) to include the new input-output pair. To strengthen the constraints on P, a new copy of the circuit CNF formula is added with P as its programming vector and I and O applied to inputs and outputs as unit clauses. The feasibility constraint on P' is strengthened in the 
+same way (line 9).
+
+Once the feasibility constraints are sufficiently strong, there will no longer exist two different programming vectors that induce distinct logic functions while also satisfying the feasibility constraints. At this point, the SAT call at line 5 becomes unsatisfiable, and a final SAT call is made (line 11) to find a single programming vector P that satisfies the feasibility constraints. Note that the value of P that is discovered may not be a unique solution, but it is known no other feasible P 0 would induce a different overall logic function 2 , as this is necessary for the SAT call at line 5 to be unsatisfiable.
+
+The algorithm is implemented using a modified version of MiniSat [23] version 2.2.0. To maximize the benefits of using incremental-SAT, we use a solver in a way that can eliminate variables and clauses to simplify the feasibility constraints as they are strengthened. From within MiniSat, at each iteration of the algorithm, we call the oracle to determine the true b output value for input I j and use input-output pairing I j b and O to strengthen the existing feasibility constraints on
+
+j P and P 0 by adding new clauses to the SAT problem. We use the MiniSat 2.2.0 (simp) version because it implements variable elimination and simplification before solving. The overhead cost of performing the simplifications is justified because the simplified constraints are carried forward and used in all future iterations. Because this version of MiniSat can eliminate variables, care must be taken to ?freeze? certain variables so that they will not be eliminated. In our case, the input vectors and programming vectors P and P 0 , and the input vector I, are frozen. Being frozen means that variables will always remain in the SAT problem, and this makes it possible to read out their values whenever a satisfying assignment is found.
+\subsection{Baseline SAT-based De-obfuscation Algorithm}
+Out SAT formulation is similar to the approach that was first demonstrated by EI Massad, Garg, and Tripunitara, and we denote this earlier approach as the baseline algorithm that we compare against. Their algorithm is a significant advancement in reverse engineering, and was able to deobfuscate in minutes problems that would take years to deobfuscate using brute force [2]. Aside from attacking different circuits, the significant difference between our approach and the baseline approach is simply that we use incremental SAT to keep strengthening the feasibility constraints within a single persistent SAT problem. By contrast, the baseline approach treats each iterations except for the input-output pairings. Therefore, the baseline algorithm dose not carry forward any learned information ot simplifications from one iteration to the next. In Sec. V-D we compare the runtime of our incremental approach to the baseline approach.
+\subsection{Illustrative Example}
+
+\section{Evaluation of De-Obfuscation Algorithm}
+
+\chapter{Camouflage algorithms}
 
 \section{Introduction}
 
@@ -439,6 +345,9 @@ baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah,
 baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.
 Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah. 
 
+\section{Problem Formulation}
+
+\section{Evaluation of de-camouflaging algorithm}
 \chapter{A Wonderfully Long Chapter Title That Is This Long In Order
   to Test the Chapter Heading Stuff}
 Note that we shouldn't really have a chapter heading with no body, so
