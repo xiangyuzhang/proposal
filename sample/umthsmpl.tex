@@ -86,8 +86,8 @@
 %%                     the final version
 %% umassthesis changes the default font size to 12pt, but you may specify 10pt or
 %%   11pt in the options.
-%%\documentclass{umassthesis}          % for Ph.D. dissertation or proposal
-\documentclass[proposal]{umassthesis}  % for Master's thesis
+\documentclass{umassthesis}          % for Ph.D. dissertation or proposal
+% \documentclass[thesis]{umassthesis}  % for Master's thesis
 
 %%
 %% If you have enough figures or tables that you run out of space for their
@@ -109,16 +109,18 @@
 
 %%
 %% You must fill in all of these appropriately
-\title{Circuit Camouflage Algorithm\protect\\And\protect\\Oracle Guided Incremental Solver}
-\author{Xiangyu Zhang}
-\date{February 2017} % The date you'll actually graduate -- must be
+\title{On the predilection of sheep for grass\protect\\A really long
+  title\protect\\with multiple lines}
+\author{I. M. Woolly}
+\date{February 1995} % The date you'll actually graduate -- must be
                      % February, May, or September
-\copyrightyear{2016}
-\bachelors{B.Sc.}{Florida Institute of Technology}
-\masters{M.Sc.}{University of Massachusetts Amherst }
-
- \committeechair{Daniel Holcomb}
-%\cochairs{B. B. Bahh}{I. M. A. Wolf}
+\copyrightyear{1995}
+\bachelors{B.Sc.}{University of Woolloomooloo}
+\masters{M.Sc.}{University of Back of Bourke}
+\secondmasters{M.Ed.}{Antioch College}
+\priordoctorate{M.D.}{University of Never-never-land}
+% \committeechair{B. B. Bahh}
+\cochairs{B. B. Bahh}{I. M. A. Wolf}
 \firstreader{Little Bo Peep}
 \secondreader{R. U. Sheepish}
 \thirdreader{Bill Shepherd}
@@ -127,7 +129,7 @@
 %\sixthreader{}            % Optional
 \departmentchair{Pete Shearer} % Uses "Department Chair" as the title. To
 % use an alternate title, such as "Chair", use \departmentchair[Chair]{Pete Shearer}
-\departmentname{Electrical and Computer Engineering}
+\departmentname{Sheep Studies}
 
 %% If your degree is something other than a Ph.D. (for a dissertation), or
 %% an M.S. (for a thesis), you will need to uncomment the appropriate
@@ -144,13 +146,13 @@
 %% \degree{Master of Landscape Architecture}{M.L.A.}
 %% \degree{Master of Music}{M.M.}
 %% \degree{Master of Public Administration}{M.P.A.}
-%%\degree{Master of Public Health}{M.P.H.}
+\degree{Master of Public Health}{M.P.H.}
 %% \degree{Master of Regional Planning}{M.R.P.}
 %% \degree{Master of Science}{M.S.}
 %% \degree{Master of Science in Accounting}{M.S. Acctg.}
 %% \degree{Master of Science in Chemical Engineering}{M.S. Ch.E.}
 %% \degree{Master of Science in Civil Engineering}{M.S.C.E.}
- \degree{Master of Science in Electrical and Computer Engineering}{M.S.E.C.E.}
+%% \degree{Master of Science in Electrical and Computer Engineering}{M.S.E.C.E.}
 %% \degree{Master of Science in Engineering Management}{M.S. Eng. Mgt.}
 %% \degree{Master of Science in Environmental Engineering}{M.S. Env. E.}
 %% \degree{Master of Science in Industrial Engineering and Operations Research}{M.S.I.E.O.R.}
@@ -166,14 +168,14 @@
 %% if you were preparing an M.S. thesis instead of a PhD dissertation.
 \frontmatter
 \maketitle
-%%\copyrightpage     %% not required for an M.S. thesis
+\copyrightpage     %% not required for an M.S. thesis
 \signaturepage
 
 %%
 %% Dedication is optional -- but this is how you create it
 \begin{dedication}              % Dedication page
   \begin{center}
-    \emph{In the name of Jesus Christ.}
+    \emph{To those little lost sheep.}
   \end{center}
 \end{dedication}
 
@@ -215,16 +217,15 @@
 %%
 %% Acknowledgements are optional...yeah, right.
 \chapter{Acknowledgments}             % Acknowledgements page
-I would like to thank my advisor, Dr. Daniel Holcomb, for his thoughtful, patient guidance and support. Thanks are also due to Duo Liu and Cunxi Yu. Together their friendship and selfless contribution to my professional development have been invaluable and will forever be appreciated. I would also like to extend my gratitude to the members of my committee, Dr. Sandip Kundu and Dr. Maciej J. Ciesielski, for their helpful comments and suggestions on all stages of this project.\\
-
-A special thank you to all those whose support and friendship helped me to stay focused on this project and who have provided me with the encouragement to continue when the going got tough.
+  Thanks to all those fine shepherds. Not to mention all the great
+  border collies and suchlike fine animals.
 
 %%
 %% Abstract is MANDATORY. -- Except for MS theses
 \begin{abstract}                % Abstract
-This study was performed with two main goals in mind. The first goal was to implement the four current main stream gate-level circuit camouflage algorithms as well as their performance. The second goal was to implement the Oracle-guided incremental de-camouflage algorithm. 
-
-The four circuit camouflage algorithms are implemented by Python, and the Oracle-guided incremental de-camouflage algorithm is implemented by C++. During this study, I tested the Oracle-guided de-camouflage tool (Solver, in short) performance by using it to de-obfuscate ISCAS-85 combinational benchmarks when camouflaged using the four camouflage algorithms. The results show that  Solver is able to efficiently de-obfuscate the ISCAS-85 benchmarks regardless of camouflaging style, and are able to do so 10.5x faster than the best existing approaches. And, based on Solver, this study also measured the performance for each camouflage algorithms. \end{abstract}
+  Sheep like grass.  Why?  Let me tell you.  Sheep are ruminants, like
+  cattle, deer, and horses.  They have stomachs that are specialized...
+\end{abstract}
 
 %%
 %% Preface goes here...would be just like Acknowledgements -- optional
@@ -250,29 +251,26 @@ The four circuit camouflage algorithms are implemented by Python, and the Oracle
 %%
 %% If you want an introduction, which is not a numbered chapter, insert
 %% the following two lines.  This is OPTIONAL:
-%\unnumberedchapter{Introduction}
-%Why on earth do I want to study sheep anyway?
+\unnumberedchapter{Introduction}
+Why on earth do I want to study sheep anyway?
 
 %%
 %% Some sample text
-\chapter{Incremental SAT-based Reverse Engineering of Camouflaged Logic Circuits}
-%%Is there life after sheep?~\cite{xyz}  Yes, I say there is.%\marginpar{Really?}
-        As countermeasures against reverse engineering of combinational logic, layout-level gate or routing camouflaging techniques have increasingly attracted interests. The security of camouflaging relies on the difficulty of learning the overall combinational logic function without knowing the functions implemented by the individual camouflaged components of the circuit.
+\chapter{An Introduction to Sheep}
+Is there life after sheep?~\cite{xyz}  Yes, I say there is.%\marginpar{Really?}
 
-        In this study, I use incremental SAT solver to reconstruct the logical function of a circuit with camouflaged components. The algorithm used the standard attacker model in which an adversary knows only the non-camouflaged component functions, and has the ability to query the circuit to learn the correct output vector for any input vector. To test the performance, I use three different proposed styles of camouflaging \cite{1}, \cite{2}, \cite{3}. This study will give results to quantify the effectiveness of camouflaging techniques on a variety of ISCAS-85 benchmark circuits.
-\section{Introduction}
-    IC designers have clear incentives against publicizing all implementation details of a design, as this may compromise their strategic advantage or leak sensitive information. However, once a circuit is fabricated and released to market, reverse engineering techniques can attempt to extract implementation details from the physical object without consent or knowledge of the designer. Circuit camouflaging is an attempt to obscure the true functionality of a circuit, and to limit the information that can be leaked through reverse engineering.
-    
-    Gate-level camouflaging is a particular camouflaging tech- nique in which the functions of certain combinational logic gates cannot be directly ascertained from imaging-based reverse engineering. In this case, the logic may be inferred using a combination of information obtained from reverse engineering and information obtained through observation of input-output vectors captured through scan chains or other mechanisms. In this paper we present such an algorithm for extracting the functionality of reverse engineered netlists.
-%\cite{Bah}.  We also want to refer to figure \ref{fig:circle} here.
-%Here's some verbatim text to screw us up:
+\section{Pulling the wool over your eyes}
 
-%{\small
-%\begin{verbatim}
-%xxx := y;
-%xy := x;
-%\end{verbatim}
-%}
+Sheep are fabulous creatures.  The noises they make are truly stupendous
+\cite{Bah}.  We also want to refer to figure \ref{fig:circle} here.
+Here's some verbatim text to screw us up:
+
+{\small
+\begin{verbatim}
+xxx := y;
+xy := x;
+\end{verbatim}
+}
 
 \begin{figure}
   \begin{center}
@@ -378,10 +376,10 @@ more tables, table \ref{table:morenumbers} and table
 \subsection{Even more about sheep noises}
 \subsection{And yet more about sheep noises}
 
-\section{MUX4}
+\section{What about wolves?}
 What about wolves?\footnote{To be fair, some wolves are probably nice\ldots}
 
-\section{DummyWire}
+\section{What about shepherds?}
 What about shepherds?  I don't really know, but I want some text here
 to fill things in so that I can verify that everything is OK.%
 \footnote{Some shepherds are good, some are bad. The reader is referred
@@ -428,10 +426,7 @@ With some text.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah,
 baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah,
 baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah. 
 
-\section{OBF}
-Baah.
-
-\chapter{Oracle-guided Incremental Solver}
+\chapter{Sheep and Grass}
 
 \section{Introduction}
 
@@ -444,9 +439,6 @@ baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah,
 baah, baah.  Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah.
 Baah, baah, baah.  Baah, baah, baah.  Baah, baah, baah. 
 
-\section{Problem Formulation}
-
-\section{Evaluation of de-camouflaging algorithm}
 \chapter{A Wonderfully Long Chapter Title That Is This Long In Order
   to Test the Chapter Heading Stuff}
 Note that we shouldn't really have a chapter heading with no body, so
