@@ -1,0 +1,21 @@
+set terminal postscript eps color 'Times-Roman,25' 
+set output  "c7552-Base-Incre-clause.eps" 
+set key left 
+set style data lines
+#set logscale y
+set xlabel "Iteration"
+set ylabel "Number of Clauses"
+set size 1,0.8
+set key invert 
+set key height 0.5
+set key width 0.5
+set xtics 0,20
+set key samplen 2
+#set ytics ("1x10^5" 100000,"1x10^6" 1000000, "3x10^6" 3000000)
+#set xrange [0:357]
+set ytics 0,1000000
+set yrange [0:3000000]
+set xrange [0:80]
+set points 2
+set grid x,y
+plot  "c7552-nonincre.dat" every 2 using 1:3 title "Baseline" with linespoints lw 4 lc 1 pt 8, "increIterationInfo.log" every 2 using 1:3 title "Incremental" with linespoints  lw 4 lc 3 pt 7

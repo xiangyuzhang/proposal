@@ -1,0 +1,32 @@
+set term postscript eps enhanced color font ',20'
+set output 'c1908-mux4.eps'
+set key invert
+set key font 'Times-Roman,25'
+set xtics font 'Times-Roman,20'
+set ytics font 'Times-Roman,20'
+set ylabel font 'Times-Roman,25'
+set xlabel font 'Times-Roman,25'
+set xrange [1:200]
+set xtics 0, 50, 200
+set multiplot layout 2,1
+set lmargin 10
+# LABEL = 'results based on C7552'
+# set obj 10 rect at 70, 1000000 size char strlen(LABEL), char 1
+# set obj 10 fillstyle empty border -1 front
+# set label 10 at 70,1000000 LABEL front center
+set ylabel '# of Clause' 
+set ytics 0, 1000000, 3000000
+set yrange [0:3000000]
+set key center at 50, 2250000
+plot 'increIterationInfo.log' using 1:3 w lp pt 0 ps 1 lc -1 lw 2 title 'Incremental','solveinfor1908-4.v' using 1:3 w lp pt 0 ps 1 lc 2 lw 2 title 'Baseline'
+
+
+set ylabel 'runtime(s)'
+set yrange [0:100]
+set ytics 0,50,100
+set xlabel 'Iteration'
+set key center at 50, 75
+
+plot 'increIterationInfo.log' using 1:4 w lp pt 0 ps 1 lc -1 lw 2 title 'Incremental','solveinfor1908-4.v' using 1:4 w lp pt 0 ps 1 lc 2 lw 2 title 'Baseline'
+unset multiplot
+set output

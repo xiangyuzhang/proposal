@@ -1,0 +1,3 @@
+This repo including plot comparing difficulty of XOR camouflage algorithm and MUX4, there are two things need attention:
+1, MUX4 C1355 IS buggy, so there is no plot about 
+2, MUX4 c2670 is too hard to solve, so the is no plot about 

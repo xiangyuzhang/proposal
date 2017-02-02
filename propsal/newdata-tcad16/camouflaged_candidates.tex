@@ -1,0 +1,14 @@
+\begin{table}[]
+%\normalsize
+\centering
+\begin{tabular}{|l|c|}
+\hline
+Camoflaging Technique & \begin{tabular}[c]{@{}c@{}}Camouflagable components\\ in ISCAS-85 benchmarks\end{tabular} \\ \hline
+NAND/NOR/XOR camouflaged cells~\cite{rajendran-13} & NAND2, NOR2, XOR2  \\ \hline
+%\cite{rajendran-13}* & \begin{tabular}[c]{@{}c@{}}NAND2, NOR2, XOR2,\\ AND2, OR2, XNOR2\end{tabular} & NO \\ \hline
+NAND4 Obfusgates~\cite{malik-obfusgate} & \begin{tabular}[c]{@{}c@{}}AND/NAND(2,3,4), INV, \\ OR/NOR(2,3,4), BUFFER\end{tabular} \\ \hline
+Tranformable Interconnects~\cite{chen-2015-dummyWire} & any net  \\ \hline
+\end{tabular}
+\caption{Camouflagable components in the ISCAS-85 benchmarks when applying different camouflaging techniques. Note that, in the case of transformable interconnects, any net can be chosen, but the choice of dummy connections is restricted to avoid creating apparent combinational loops.}
+\label{tbl:camouflage_candidates}
+\end{table}

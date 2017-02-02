@@ -1,0 +1,63 @@
+\begin{table*}[]
+%\scriptsize
+%\normalsize
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{j} & num. feasible & \multicolumn{3}{c|}{SAT solution (Alg.~\ref{proc:deobfuscate_incremental}, line~\ref{algline:isat1})} & constraint learned & \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}CNF statistics\\ Incremental\end{tabular}} & \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}CNF statistics\\ Baseline\end{tabular}} \\ \cline{3-10} 
+ & configurations & \textit\{$I$\} & \textit\{$P$\} & \textit\{$P'$\} & $(\widehat{I}_j, \widehat{O}_j)$ & \textit{num. vars} & \textit{num. clauses} & \textit{num. vars} & \textit{num. clauses} \\ \hline
+1 & 27 & 01000 & 10,01,00 & 00,10,00 & (01000,11) & 114 & 364 & 114 & 364 \\ \hline
+2 & 14 & 10100 & 00,10,01 & 00,01,01 & (00000,00) & 170 & 640 & 239 & 739\\ \hline
+3 & 8 & 10110 & 00,00,01 & 00,01,01 & (10110,10) & 236 & 916 & 364 & 1114 \\ \hline
+4 & 6 & 00100 & 10,01,01 & 00,01,01 & (00100,00) & 294 & 790 & 489 & 1489 \\ \hline
+5 & 4 & 00000 & 01,01,01 & 00,01,01 & (00000,00) & 344 & 1066 & 614 & 1864 \\ \hline
+6 & 2 & 11101 & 01,01,01 & 01,01,00 & (11101,11) & 333 & 1342 & 739 & 2239 \\ \hline
+7 & 1 & \multicolumn{3}{c|}{UNSAT} & - & 95 & 1614 & 864 & 2614 \\ \hline
+\end{tabular}
+\caption{Values produced at each iteration of Alg.~\ref{proc:deobfuscate_incremental} during deobfuscation of the camouflaged \textit{c17} circuit in Figure~\ref{fig:c17_mux2}. The number of feasible configurations is the number of programming vectors that satisfy the constraints at each iteration of the algorithm.}
+\label{tbl:mux2_solving}
+\end{table*}
+
+
+%%--------Bellow is the submitted version table
+
+%\begin{table}[]
+%\normalsize
+%\centering
+%\begin{tabular}{|c|c|c|c|c|}
+%\hline
+%\multirow{2}{*}{\textit{j}} & \multicolumn{3}{c|}{SAT solution (Alg.~\ref{proc:deobfuscate_incremental}, line~\ref{algline:isat1})} & constraint learned  \\\cline{2-5}
+%                                                &  \textit{$I$} & \textit{$P$} & \textit{$P'$} & $(\widehat{I}_j, \widehat{O}_j)$ \\ \hline
+%1          & 01001 & 01\thinspace01\thinspace01 & 00\thinspace01\thinspace01 & (01001,11) \\ \hline
+%2          & 11111 & 01\thinspace01\thinspace10 & 01\thinspace01\thinspace01 & (11111,10) \\ \hline
+%3          & 10110 & 01\thinspace01\thinspace00 & 01\thinspace01\thinspace01 & (10110,10) \\ \hline
+%4          & \multicolumn{3}{|c|}{\textit{UNSAT}} & -- \\ \hline
+%\end{tabular}
+%\caption{Values produced at each iteration of Alg~\ref{proc:deobfuscate_incremental} during deobfuscation of the camouflaged \textit{c17} circuit in Figure~\ref{fig:c17_mux2}.}
+%\label{tbl:mux2_solving}
+%\end{table}
+
+%%----------End-------------
+
+
+% % \begin{table}[]
+% % \normalsize
+% % \centering
+% % \begin{tabular}{|c|c|c|c|}
+% % \hline
+% % \textit{i} & Input-output pair & \textit{$P$} & \textit{$P'$} \\ \hline
+% % 1 & {[}01001{]} ; {[}11{]} & {{[}01{]}}, {[}01{]}, {[}01{]} & {{[}00{]}}, {[}01{]}, {[}01{]} \\ \hline
+% % 2 & {[}11111{]} ; {[}10{]} & {[}01{]}, {[}01{]}, {{[}10{]}} & {[}01{]}, {[}01{]}, {{[}01{]}} \\ \hline
+% % 3 & {[}10110{]} ; {[}10{]} & {[}01{]}, {[}01{]}, {{[}00{]}} & {[}01{]}, {[}01{]}, {{[}01{]}} \\ \hline
+% % 4 & \textit{null} & \multicolumn{2}{c|}{{[}01{]}, {[}01{]}, {[}01{]}} \\ \hline
+% % \end{tabular}
+% % \caption{\textit{SAT}-based solving the camouflaged circuit \textit{c17} in Figure 5}
+% % \label{tbl:mux2_solving}
+% % \end{table}
+
+
+
+
+
+
+

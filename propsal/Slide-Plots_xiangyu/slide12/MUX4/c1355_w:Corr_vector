@@ -1,0 +1,18 @@
+set terminal postscript eps 'Times-Roman' 20
+set output  "c1355_Corrupt_Random_incre_vector.eps" 
+
+# size configuration is below #
+set key left
+set style data lines
+set xlabel "Number of Camouflaged gates"
+set ylabel "Number of Vectors"
+set xrange[0:200]
+set key samplen 2
+# set logscale y
+set size 1,0.6
+set label "C1355" at 105, 600
+
+set grid y
+
+
+plot "corrupt_vector.dat" using 1:5 title 'Corruptbility' w linespoints, "incremental_Vec_MUX4_all.dat" using 1:($8+$9)/2:($9-$8)/2 title "" w errorbars linestyle 1, "incremental_Vec_MUX4_all.dat" using 1:($8+$9)/2 title 'Random median' w linespoints pt 0 ps 1 lc -1 lw 4

@@ -1,0 +1,21 @@
+set terminal postscript eps color 'Times-Roman,25' 
+set output  "c7552-Base-Incre-runtime.eps" 
+set key left 
+set style data lines
+#set logscale y
+set xlabel "Iteration"
+set ylabel "Runtime (s)"
+set size 1,0.8
+set key invert 
+set key height 0.5
+set key width 0.5
+set key samplen 2
+#set key box
+set xtics 0,20
+set ytics 0,1
+#set ytics 0,1000,4000
+set yrange [0:4]
+set xrange [0:80]
+set points 2
+set grid x,y
+plot  "c7552-nonincre.dat" every 2 using 1:4 title "Baseline" with linespoints  lw 4 lc 1 pt 8, "increIterationInfo.log" every 2 using 1:4 title "Incremental" with linespoints  lc 3 lw 4 pt 7

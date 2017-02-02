@@ -1,0 +1,17 @@
+set term postscript eps enhanced color font ',20'
+set output 'totalRuntime.eps'
+set key invert
+set key font 'Times-Roman,25'
+set xtics font 'Times-Roman,20'
+set ytics font 'Times-Roman,20'
+set ylabel font 'Times-Roman,25'
+set xlabel font 'Times-Roman,25'
+
+# set lmargin 10
+set xrange[0:210]
+set xlabel 'Number of Index'
+set ylabel 'Runtime(s)' 
+set xlabel 
+plot 'time_info_original' using (4 *$1):2 w lp pt 0 ps 1 lc -1 lw 2 title 'Baseline','time_info_XOR' using 1:2 w lp pt 0 ps 1 lc 2 lw 2 title 'XOR'
+
+
