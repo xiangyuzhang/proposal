@@ -94,6 +94,7 @@
 %stuff for better looking tables
 \usepackage{algorithm}
 \usepackage{algorithmic}
+
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 % \usepackage{amsfonts}
@@ -103,7 +104,14 @@
 \usepackage{microtype} %better margin management
 \usepackage{booktabs}  %better looking tables
 \usepackage{url}
-
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usetikzlibrary{shapes,arrows}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
 \usepackage{subfig}
 
 %colorinlistoftodos,textsize=tiny
@@ -696,8 +704,185 @@ The most challenging case for our algorithm is deobfuscating a circuit in which 
 \end{center}
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		Intro to software		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Implementation and user guide}
+
+\section{Introduction to software}
+	\subsection{Purpose}
+	The Oracle-Guided Incremental SAT Solver (Solver) is specified in solving $camouflaged$ circuit with extremely high efficiency. The $camouflaged$ circuit model represents the reverse engineer's uncertainty about the logic gates. The $oracle$ represents the real physical object, where the user has only ability to apply inputs and observe outputs, but cannot look inside to see what the gates are. The $Solver$ will use the $oracle$ as guide to solve for the logic function of the $camouflaged$ circuit. 	
+	\subsection{Principle} 
+	Solver executes a loop that continually finds new input and output vectors using SAT queries and an oracle circuit model. After some number of iterations, the constraints accumulated are sufficient to rule out all logical functions except for the one that is the true function of the obfuscated circuit. 
+	\subsection{Terminology}
+		\begin{itemize}
+			\item Oracle program: an executable program that can produce the correct circuit output for any input that is provided to it via file PI.txt and generate corresponding PO.txt.
+			\item Camouflaged circuit: obfuscated $oracle$ circuit.
+			\item Allowed values: Allowed values are the sets of values that the programming bits for each obfuscated component can take. Given that the programming bits select the functionality of the circuit, the combinations of the allowed values for all components represents the space of hypotheses for the overall circuit function. Finding specific values from these choices is the deobfuscation problem, and is the goal of our program.
+		\end{itemize}
+
+\section{Installation Tutorial}
+	\subsection{Dependencies}
+	\emph{NOTE:} The $Solver$ is based on MINISAT.
+	\begin{itemize}
+			\item MINISAT module: modified from original MINISAT
+				\begin{itemize}
+					\item (MROOT)/core: includes MINISAT solver head file, implementation file and related supporting file.
+					\item (MROOT)/mtl: includes MINISAT templates and make file.
+					\item (MROOT)/utils: includes MINISAT utilities.
+				\end{itemize}
+			\item Solver module: solver module
+				\begin{itemize}
+					\item (MROOT)/simp: includes $Solver$ main file and MINISAT SimpSolver sourcce file.
+					\item (MROOT)/incre: includes $Solver$ source file and all the related utilities.
+					\item (MROOT)/Oracle: includes sample $Oracle$ and sample Shell script.
+				\end{itemize}
+	\end{itemize}
 
 
+
+	\subsection{Installation}
+		Makefile is included in (MROOT)/simp directory, change to MROOT directory and use command below to install
+		\begin{enumerate}
+			\item \emph{\$ export MROOT=(solver-dir)}	
+			\item \emph{\$ cd simp}
+			\item \emph{\$ make rs}
+			\item \emph{\$ cp SOLVER\_static (install-dir)/SOLVER}
+		\end{enumerate}
+		\textbf{NOTE:} 
+		\begin{enumerate}
+			\item The minimum requirement for complier is \textbf{g++ 4.9}.
+			\item If make fail, use \textbf{\$ make clean} and try again.
+		\end{enumerate}
+
+	\subsection{Command line usage}
+		After installation, $solver$ can be accessed from command line:
+		\newline
+		\centerline{ \$ SOLVER [options] $<$Cam$.v>$ $<$Orac$.sh>$}
+			\begin{itemize}
+				\item Cam.v : the verilog netlist of the circuit to be deobfuscated. The netlist must have the necessary annotations for the PIs and annotations to define the allowed values for the programming bits. Note that only a restricted subset of Verilog can be used, as defined below.
+				\item Orac.sh: shell script to query $Oracle$.
+				\item -d, -\ -debug: change to debug mode, solver will generate log message and log files.
+				\item -o, -\ -outfile: export solution to this file .
+	 		\end{itemize}
+		For example, if the $oracle$ shell is "c432-Oracle.sh" and the $camouflaged$ circuit is "c432-mux4-101.v", then the command can be:
+		\newline
+		\centerline{\$ SOLVER -d -\ -outfile Solution.txt c432-mux4-101.v c432-Oracle.sh }
+		
+	\subsection{Oracle Description}
+	During the solving, $Solver$ will generate 'PI.txt' file and read 'PO.txt' file. For stability sake, the filename can not be changed. So please make sure your $Oracle$ will can read 'PI.txt' and export 'PO.txt' in working directory. Sample PO.txt is in folder \emph{Oracle}. The first line are the signal names, and the second line are the signal values. Each netname or value in PO file is seperated by a tab, each line in PO file is seperated by a line break. PI file uses the same format. For example:
+	\begin{verbatim}
+		N1(\t)N2(\t)N3(\t)N4(\t)N5(\t)CONST1(\t)CONST0(\n)
+		1(\t)1(\t)1(\t)0(\t)1(\t)1(\t)0(\n)
+	\end{verbatim}
+	The user's oracle program could produce the outputs by any means they desire, such as by physically querying the obfuscated circuit via its scan chain. For sake of evaluation, users may wish to implement the Oracle by running simulation of a non-obfuscated circuit function, or querying a pre-programmed exhaustive look-up table of PI-PO pairs. In the example oracle files we provide, the PIs are mapped to POs by evaluating the circuit CNF using Minisat with appropriate inputs applied.	
+	
+	\subsection{Sample Camouflage format}
+	$Solver$ takes gate-level verilog, the following is an example: 
+\lstset{ 
+    language=Verilog, % choose the language of the code
+    basicstyle=\fontfamily{pcr}\selectfont\footnotesize\color{black},
+    keywordstyle=\color{black}\bfseries, % style for keywords
+    numbers=none, % where to put the line-numbers
+    numberstyle=\footnotesize, % the size of the fonts that are used for the line-numbers     
+    showspaces=false, % show spaces adding particular underscores
+    showstringspaces=false, % underline spaces within strings
+    showtabs=false, % show tabs within strings adding particular underscores
+    frame=single, % adds a frame around the code
+    tabsize=2, % sets default tabsize to 2 spaces
+    rulecolor=\color{black},
+    captionpos=b, % sets the caption-position to bottom
+    breaklines=true, % sets automatic line breaking
+    breakatwhitespace=false, 
+    emph={add_approx}, emphstyle=\color{black}\itshape\bfseries
+}
+ 	\begin{lstlisting}
+module	c17 (N1,N2,N3,N4,N5,N10,N11,CONST1,CONST0,D_0,D_1,D_2,D_3);
+input  N1,N2,N3,N4,N5,CONST1,CONST0 ;//RE__PI;
+input D_0,D_1 ;//RE__ALLOW(00,01,10,11);
+input D_2,D_3 ;//RE__ALLOW(00,01,10,11);
+output N10,N11;
+wire N6,N7,N8,N9,D_0_NOT,D_1_NOT,N7_NOT,N7_OBF,ED_0,ED_1,ED_2,ED_3,ED_4,ED_5,ED_6,ED_7,ED_8,ED_9,D_2_NOT,D_3_NOT,N6_NOT,N6_OBF,ED_10,ED_11,ED_12,ED_13,ED_14,ED_15,ED_16,ED_17,ED_18,ED_19;   
+nand2 gate1( .a(N1), .b(N3), .O(N6) );
+nand2 gate2( .a(N3), .b(N4), .O(N8) );
+nand2 gate3( .a(N2), .b(N8), .O(N7) );
+nand2 gate4( .a(N8), .b(N5), .O(N9) );
+nand2 gate5( .a(N6_OBF), .b(N7), .O(N10) );
+nand2 gate6( .a(N7_OBF), .b(N9), .O(N11) );
+inv1 gate7( .a(D_0), .O(D_0_NOT) );
+inv1 gate8( .a(D_1), .O(D_1_NOT) );
+inv1 gate9( .a(N7), .O(N7_NOT) );
+and2 gate10( .a(N7), .b(D_0_NOT), .O(ED_0) );
+and2 gate11( .a(N7_NOT), .b(D_0_NOT), .O(ED_1) );
+and2 gate12( .a(CONST1), .b(D_0), .O(ED_2) );
+and2 gate13( .a(CONST0), .b(D_0), .O(ED_3) );
+and2 gate14( .a(ED_0), .b(D_1_NOT), .O(ED_9) );
+and2 gate15( .a(ED_1), .b(D_1), .O(ED_7) );
+and2 gate16( .a(ED_2), .b(D_1_NOT), .O(ED_5) );
+and2 gate17( .a(ED_3), .b(D_1), .O(ED_4) );
+or2  gate18( .a(ED_4), .b(ED_5), .O(ED_6) );
+or2  gate19( .a(ED_6), .b(ED_7), .O(ED_8) );
+or2  gate20( .a(ED_9), .b(ED_8), .O(N7_OBF) );
+inv1 gate21( .a(D_2), .O(D_2_NOT) );
+inv1 gate22( .a(D_3), .O(D_3_NOT) );
+inv1 gate23( .a(N6), .O(N6_NOT) );
+and2 gate24( .a(N6), .b(D_2_NOT), .O(ED_10) );
+and2 gate25( .a(N6_NOT), .b(D_2_NOT), .O(ED_11) );
+and2 gate26( .a(CONST1), .b(D_2), .O(ED_12) );
+and2 gate27( .a(CONST0), .b(D_2), .O(ED_13) );
+and2 gate28( .a(ED_10), .b(D_3_NOT), .O(ED_19) );
+and2 gate29( .a(ED_11), .b(D_3), .O(ED_17) );
+and2 gate30( .a(ED_12), .b(D_3_NOT), .O(ED_15) );
+and2 gate31( .a(ED_13), .b(D_3), .O(ED_14) );
+or2  gate32( .a(ED_14), .b(ED_15), .O(ED_16) );
+or2  gate33( .a(ED_16), .b(ED_17), .O(ED_18) );
+or2  gate34( .a(ED_19), .b(ED_18), .O(N6_OBF) );
+endmodule
+  		\end{lstlisting}
+	There are several points that need attention regarding the Verilog netlist:
+	\begin{itemize}
+
+		\item the line declaring primary inputs should be followed by "\///RE\_\_PI;".
+		\item the line declaring control bits should be noted by  "\///RE\_\_ALLOW();".
+		\item allowed values for each group of control bits should be written inside paretheses of "\///RE\_\_ALLOW();", for example  "\///RE\_\_ALLOW(1,0);". If one camouflaged gate requires more than one control bits, for example it needs two bits, use the format  "\///RE\_\_ALLOW(00,01,10,11);".
+		\item the number of control bits in an input line must be equal to the length of allowed values after it. For example, "input D\_1; RE\_\_ALLOW(00,01,10,11);" is illegal because it defines a single programming bit but describes a set of 2-bit values for the bit to take.
+		\item primary inputs named CONST1 and CONST0 will be interpreted as values 1 and 0.
+		\item solver can accept the following kinds of gate:
+			\begin{itemize}
+				\item inv
+				\item and (with any number of fanin) 
+				\item or (with any number of fanin)
+				\item xor 
+				\item nor (with any number of fanin)
+				\item nand (with any number of fanin)
+				\item buf
+			\end{itemize}
+	\end{itemize}
+	\clearpage
+	\subsection{Flow diagram}
+	\tikzstyle{decision} = [diamond, draw, fill=white!20, 
+  			  text width=4.5em, text badly centered, node distance=5cm, inner sep=0pt]
+	\tikzstyle{block} = [rectangle, draw, fill=white!20, 
+   			 text width=7em, text centered, rounded corners, minimum height=7em]
+	\tikzstyle{oralce} = [rectangle, draw, fill=gray!20,
+			test width = 7em. text centered, rounded corners, minumum height = 7em]
+	\tikzstyle{line} = [draw, -latex']
+	\tikzstyle{cloud} = [draw, rectangle ,fill=red!20, text width=7em, text centered, rounded corners, minimum height=4em]
+	\begin{tikzpicture}[node distance = 5cm, auto]
+		\node[block](init){translate and build milter};
+		\node[block, below of = init](solver){solve to find a PI to differentiate two control bit vectors};
+		\node[decision, below of = solver](decide){solvable?};
+		\node[cloud, left of = decide](find){find corresponding PO};
+		\node[block, above of = find](duplicate){instantiate new copy of camouflaged circuit and assign newly found PIPO};
+		\node[block, right of = decide](finalSolu){based on collected PIPOs solve for final control bit vectors that deobfuscates circuit };
+		
+		\path[line](init) -- (solver);
+		\path[line](solver) -- (decide);
+		\path[line](decide) --node{Yes} (find);
+		\path[line](find) -- (duplicate);
+		\path[line](duplicate) -- (solver);
+		\path[line](decide) -- node{No}(finalSolu);	
+	\end{tikzpicture}
+	\newline
+	\textbf{NOTE:} The while filled blocks are SOLVER tasks. And the red filled block belongs to user defined oracle. 	
 
 
 
@@ -910,6 +1095,17 @@ I compare the runtimes of our incremental algorithm against a baseline result fr
 
 To understand the efficiency of the incremental algorithm, I study in more detail the incremental deobfuscation of circuit c7552 with 200 gates camouflaged using the NAND/NOR/XOR style~\cite{rajendran-13}. Fig.~\ref{fig:study_incremental} shows how the number of clauses and unresolved variables grow as the incremental algorithm proceeds. If the solver is not able to make any simplifications, then both clauses and unresolved variables will grow linearly with the number of iterations as new copies of the CNF-encoded circuit are added to the problem. Subfig.~\ref{subfig:mux2_clauses} shows sub-linear growth in the number of clauses in each iteration of the incremental algorithm, and Subfig.~\ref{subfig:mux2_vars} shows sub-linear growth in the number of unresolved variables. This indicates that partial information from different copies of the circuit CNF are being combined in useful ways. 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%						Future Work          								%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{FUTHRE WORK}
+The current has finished the implementation for obfuscation techniques and SAT incremental algorithm, and has also provided detailed evaluation for the both. But the performance regarding the combination of various techniques is also worth to investigate. 
+
+So for the future work, I will implement software to combine dummy contacts and transformable interconnection, and investigate the difficulty for various benchmarks. The purpose of this experiment is to investigate how to combine connection obfuscation and functionality obfuscating to realize the max difficulty. And the reason why I don't consider the MUX2 is because it is a subset of MUX4, and the reason I don?t use obfuscate is that it will provide functionality and connection obfuscation at the same time.
+
 \chapter{CONCLUSION}
 
 This work proposes an incremental-SAT based approach for deobfuscating camouflaged circuits. I have implemented the algorithm and tested its performance by using it to deobfuscate ISCAS-85 combinational benchmarks when camouflaged using three different styles of component camouflaging. The results show that our algorithm is able to efficiently deobfuscate the ISCAS-85 benchmarks regardless of camouflaging style, and are able to do so 10.5x faster than the best existing approaches. Our tool is released publicly to evaluate and support development of future selective component camouflaging approaches. 
@@ -918,8 +1114,8 @@ This work proposes an incremental-SAT based approach for deobfuscating camouflag
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\appendix
-%\chapter{THE FIRST APPENDIX TITLE}
-%...
+The while filled blocks are SOLVER tasks. And the red filled block belongs to user defined oracle. 
+
 %\chapter{THE SECOND APPENDIX TITLE}
 %...
 
