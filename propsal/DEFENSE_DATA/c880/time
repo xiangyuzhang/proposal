@@ -1,0 +1,24 @@
+set terminal postscript eps color 'Times-Roman,25' 
+set output  "c880.eps" 
+set key left 
+set style data lines
+set title "c880"
+#set logscale y
+#set logscale x
+set xlabel "#bits for functionallity/#total bits"
+set ylabel "CPU Time (s)"
+set key invert 
+set key height 0.5
+set key width 0.5
+set key font "Times-Roman,15"
+set key samplen 2
+#set xrange [0:357]
+#set ytics 0,5,13
+#set yrange [1:1000]
+#set points 1.2
+set grid x,y
+#set xtics 0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.9,1
+set size 1,0.7
+plot  "DATA" using ($2)/($1*0.75 + $2):4 title "Runtime" with linespoints  lc 3
+
+
